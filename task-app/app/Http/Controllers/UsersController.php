@@ -138,3 +138,28 @@ class UsersController extends Controller
             ]);
         }
     }
+    /**
+     * Exclui um usuário pelo seu ID.
+     *
+     * @param int $id O ID do usuário a ser excluído.
+     * @return \Illuminate\Http\JsonResponse Uma resposta JSON indicando sucesso ou falha.
+     */
+    public function delete($id): \Illuminate\Http\JsonResponse
+    {
+        $user = User::find($id);
+        // Verificando se o usuário foi encontrado
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'data' => 'Usuário não encontrado'
+            ]);
+        } else {
+            // Deletando o usuário
+            $user->delete();
+            return response()->json([
+                'success' => true,
+                'data' => 'Usuário deletado'
+            ]);
+        }
+    }
+}
