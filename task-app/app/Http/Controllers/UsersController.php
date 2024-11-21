@@ -56,3 +56,17 @@ class UsersController extends Controller
             ]);
         }
     }
+    /**
+     * Retorna todos os usuários cadastrados no banco de dados.
+     *
+     * @return \Illuminate\Http\JsonResponse Uma resposta JSON contendo os dados dos usuários.
+     */
+    public function list()
+    {
+        // Buscando todos usuarios
+        $users = User::all();
+        // Retornando os usuários
+        return response()->json([
+            'data' => $users
+        ]);
+    }
