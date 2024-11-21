@@ -41,16 +41,19 @@ export class SelectPage implements OnInit {
     this.fetchUser();
     this.form = this.formBuilder.group({
       'name': ['', [
+        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(255)
       ]],
       'email': ['', [
         Validators.email,
+        Validators.required,
         Validators.minLength(3),
         Validators.maxLength(255),
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
       ]],
       'password': ['', [
+        Validators.required,
         Validators.minLength(8),
         Validators.maxLength(255),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$')
@@ -67,6 +70,9 @@ export class SelectPage implements OnInit {
    */
   getErrorMessage(controlName: string): string {
     const control = this.form.get(controlName);
+    if (control?.hasError('required')) {
+      return 'Campo obrigatório.';
+    }
     if (control?.hasError('minlength')) {
       const requiredLength = control.getError('minlength').requiredLength;
       return `O comprimento mínimo é ${requiredLength} caracteres.`;
@@ -158,10 +164,9 @@ export class SelectPage implements OnInit {
    */
   updateUser() {
     if (this.form.valid) {
-      this.apiService.putData('update/' + this.userId, this.userData) //+ this.userId Substitua 'users' pelo endpoint da sua API
+      this.apiService.putData('update/' + this.userId, this.form.value) //+ this.userId Substitua 'users' pelo endpoint da sua API
         .subscribe(
           (response) => {
-            console.log('Resposta da API:', response);
             if (response.success == true) {
               this.presentToast('Usuário atualizado com sucesso!', 'success');
             } else {
@@ -172,6 +177,8 @@ export class SelectPage implements OnInit {
             console.error('Erro ao atualizar usuário:', error);
           }
         );
+    } else {
+      this.presentToast('Não pode haver campos vazios ou campos com dados inválidos.', 'warning');
     }
   }
   /**

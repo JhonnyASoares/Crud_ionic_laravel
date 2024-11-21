@@ -107,20 +107,27 @@ class UsersController extends Controller
         $user = User::find($id);
         try {
             // Validando os dados do request
+            // return response()->json([
+            //     'success' => true,
+            //     'data' => $request->all()
+            // ]);
             $request->validate([
-                'email' => 'nullable|email|min:3|max:255|unique:users,email,' . $user->id,
-                'password' => 'nullable|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
-                'name' => 'nullable|min:3|max:255'
+                'email' => 'required|email|min:3|max:255|unique:users,email,' . $user->id,
+                'password' => 'required|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+                'name' => 'required|min:3|max:255'
             ], [
                 'email.email' => 'Insira um email válido.',
+                'email.required' => 'O campo "Email" não pode estar vazio.',
                 'email.min' => 'O campo "Email" deve ter pelo menos 3 caracteres.',
                 'email.max' => 'O campo "Email" deve ter de menos 255 caracteres.',
                 'email.unique' => 'Email já cadastrado.',
                 'password.min' => 'A senha deve ter pelo menos 8 caracteres.',
                 'password.max' => 'A senha deve ter de menos 255 caracteres.',
                 'password.regex' => 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
+                'password.required' => 'O campo "Senha" não pode estar vazio.',
                 'name.min' => 'O campo "Nome" deve ter pelo menos 3 caracteres.',
-                'name.max' => 'O campo "Nome" deve ter de menos 255 caracteres.'
+                'name.max' => 'O campo "Nome" deve ter de menos 255 caracteres.',
+                'name.required' => 'O campo "Nome" não pode estar vazio.',
             ]);
             // Atualizando o usuário
             $user->fill($request->only(['email', 'password', 'name']));

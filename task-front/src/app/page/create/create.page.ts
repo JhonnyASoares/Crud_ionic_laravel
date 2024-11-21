@@ -11,29 +11,29 @@ export class CreatePage implements OnInit {
   protected form: FormGroup;
 
   constructor(protected formBuilder: FormBuilder, private apiService: ApiService, private toastController: ToastController) {
-      this.form = this.formBuilder.group({
-        'name': ['', [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(255)
-        ]],
-        'email': ['', [
-          Validators.required,
-          Validators.email,
-          Validators.minLength(3),
-          Validators.maxLength(255),
-          Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
-        ]],
-        'password': ['', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(255),
-          Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$')
-        ]]
-      });    
+    this.form = this.formBuilder.group({
+      'name': ['', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(255)
+      ]],
+      'email': ['', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(3),
+        Validators.maxLength(255),
+        Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')
+      ]],
+      'password': ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(255),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$')
+      ]]
+    });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
   /**
    * Retorna uma mensagem de erro para um determinado campo do formulário.
    * @param controlName O nome do campo do formulário.
@@ -49,7 +49,7 @@ export class CreatePage implements OnInit {
       const requiredLength = control.getError('minlength').requiredLength;
       return `O comprimento mínimo é ${requiredLength} caracteres.`;
     }
-    if(control?.hasError('maxlength')) {
+    if (control?.hasError('maxlength')) {
       const requiredLength = control.getError('maxlength').requiredLength;
       return `O comprimento maximo é ${requiredLength} caracteres.`;
     }
@@ -90,6 +90,9 @@ export class CreatePage implements OnInit {
           console.error('Erro ao criar usuário:', error);
         }
       );
+    }
+    else {
+      this.presentToast('Não pode haver campos vazios ou campos com dados inválidos.', 'warning');
     }
   }
 
