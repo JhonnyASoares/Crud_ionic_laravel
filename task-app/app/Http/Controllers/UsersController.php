@@ -94,3 +94,47 @@ class UsersController extends Controller
             ]);
         }
     }
+
+    /**
+     * Atualiza um usuário existente.
+     *
+     * @param int $id O ID do usuário a ser atualizado.
+     * @param Request $request A requisição com os dados a serem atualizados.
+     * @return \Illuminate\Http\JsonResponse Uma resposta JSON com o resultado da atualização.
+     */
+    public function update($id, Request $request): \Illuminate\Http\JsonResponse
+    {
+        $user = User::find($id);
+        try {
+            // Validando os dados do request
+            $request->validate([
+                'email' => 'nullable|email|min:3|max:255|unique:users,email,' . $user->id,
+                'password' => 'nullable|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+                'name' => 'nullable|min:3|max:255'
+            ], [
+                'email.email' => 'Insira um email válido.',
+                'email.min' => 'O campo "Email" deve ter pelo menos 3 caracteres.',
+                'email.max' => 'O campo "Email" deve ter de menos 255 caracteres.',
+                'email.unique' => 'Email já cadastrado.',
+                'password.min' => 'A senha deve ter pelo menos 8 caracteres.',
+                'password.max' => 'A senha deve ter de menos 255 caracteres.',
+                'password.regex' => 'A senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.',
+                'name.min' => 'O campo "Nome" deve ter pelo menos 3 caracteres.',
+                'name.max' => 'O campo "Nome" deve ter de menos 255 caracteres.'
+            ]);
+            // Atualizando o usuário
+            $user->fill($request->only(['email', 'password', 'name']));
+            $user->save();
+            return response()->json([
+                'success' => true,
+                'data' => $user
+            ]);
+        } catch (ValidationException $e) {
+            $errors = $e->errors();
+            // Retornarndo o primeiro erro encontrado
+            return response()->json([
+                'success' => false,
+                'data' => $errors[array_key_first($errors)][0]
+            ]);
+        }
+    }
