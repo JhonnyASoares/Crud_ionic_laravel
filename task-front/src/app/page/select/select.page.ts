@@ -53,7 +53,7 @@ export class SelectPage implements OnInit {
       'password': ['', [
         Validators.minLength(8),
         Validators.maxLength(255),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[\\W_]).{8,}$')
       ]]
     });
   }

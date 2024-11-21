@@ -13,23 +13,29 @@
       </ion-item>
       <form [formGroup]="form">
         <ion-item>
-          <ion-input label="Nome:" name="name" formControlName="name"></ion-input>
-          <ion-note *ngIf="!form.get('name')?.valid && form.get('name')?.touched" color="danger">{{
-            getErrorMessage('name')
-            }}</ion-note>
+          <div class="w-full">
+            <ion-input label="Nome:" name="name" formControlName="name"></ion-input>
+            <ion-note *ngIf="!form.get('name')?.valid && form.get('name')?.touched" color="danger">{{
+              getErrorMessage('name')
+              }}</ion-note>
+          </div>
         </ion-item>
         <ion-item>
-          <ion-input label="Email:" type="email" name="email" formControlName="email"></ion-input>
-          <ion-note *ngIf="!form.get('email')?.valid && form.get('email')?.touched" color="danger">{{
-            getErrorMessage('email')
-            }}</ion-note>
+          <div class="w-full">
+            <ion-input label="Email:" type="email" name="email" formControlName="email"></ion-input>
+            <ion-note *ngIf="!form.get('email')?.valid && form.get('email')?.touched" color="danger">{{
+              getErrorMessage('email')
+              }}</ion-note>
+          </div>
         </ion-item>
         <ion-item>
-          <ion-input label="Senha:" type="password" name="password" formControlName="password"
-            placeholder=" Insira sua nova senha"></ion-input>
+          <div class="w-full">
+            <ion-input label="Senha:" type="password" name="password" formControlName="password"
+              placeholder=" Insira sua nova senha"></ion-input>
             <ion-note *ngIf="!form.get('password')?.valid && form.get('password')?.touched" color="danger">{{
               getErrorMessage('password')
               }}</ion-note>
+          </div>
         </ion-item>
       </form>
 
