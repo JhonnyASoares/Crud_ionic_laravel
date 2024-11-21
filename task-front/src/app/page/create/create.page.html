@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary" class="head-pd-side">
+    <ion-menu-button slot="start"><ion-icon color="light" name="menu-outline"></ion-icon></ion-menu-button>
+    <ion-title>Registrar Usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" class="form">
+    <ion-list class="list">
+      <div>
+        <ion-input label="Nome" labelPlacement="floating" fill="outline" name="name" formControlName="name"></ion-input>
+        <ion-note *ngIf="!form.get('name')?.valid && form.get('name')?.touched" color="danger">{{
+          getErrorMessage('name')
+          }}</ion-note>
+      </div>
+
+      <div>
+        <ion-input label="Email" labelPlacement="floating" fill="outline" name="email"
+          formControlName="email"></ion-input>
+        <ion-note *ngIf="!form.get('email')?.valid && form.get('email')?.touched" color="danger">{{
+          getErrorMessage('email') }}</ion-note>
+      </div>
+
+      <div>
+        <ion-input label="Senha:" labelPlacement="floating" fill="outline" type="password" name="password"
+          formControlName="password"></ion-input>
+        <ion-note *ngIf="!form.get('password')?.valid && form.get('password')?.touched" color="danger">{{
+          getErrorMessage('password') }}</ion-note>
+      </div>
+      <ion-button size="large" expand="block" color="primary" (click)="onSubmit()">Enviar</ion-button>
+    </ion-list>
+  </form>
+
+
+</ion-content>
