@@ -22,7 +22,7 @@ class UsersController extends Controller
             // Validando os dados do request e customizando as mensagens de erro
             $request->validate([
                 'email' => 'required|email|unique:users|min:3|max:255',
-                'password' => 'required|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+                'password' => 'required|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[\W_]/',
                 'name' => 'required|min:3|max:255'
             ], [
                 'email.required' => 'O campo "Email" não pode estar vazio.',
@@ -113,7 +113,7 @@ class UsersController extends Controller
             // ]);
             $request->validate([
                 'email' => 'required|email|min:3|max:255|unique:users,email,' . $user->id,
-                'password' => 'required|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
+                'password' => 'required|string|min:8|max:255|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[\W_]/',
                 'name' => 'required|min:3|max:255'
             ], [
                 'email.email' => 'Insira um email válido.',
