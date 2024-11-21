@@ -1,0 +1,7 @@
+{
+  "name": "task-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
