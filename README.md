@@ -40,7 +40,7 @@ Certifique-se de que seu ambiente atenda aos seguintes requisitos:
 1. Clone o repositório:
 ```bash
 git clone https://github.com/JhonnyASoares/Crud_ionic_laravel
-cd backend
+cd back-end
 ```
 2. Instale as dependências:
 ```bash
