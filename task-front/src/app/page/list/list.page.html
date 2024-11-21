@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="primary" class="head-pd-side">
+    <ion-menu-button slot="start"><ion-icon color="light" name="menu-outline"></ion-icon></ion-menu-button>
+    <ion-title>Listar Usuários</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <ion-list class="ion-padding">
+      <ion-item *ngFor="let item of users">
+        <ion-label>{{ users.indexOf(item) + 1 }} - {{ item.name }}</ion-label>
+        <ion-button (click)="redirectToSelect(item.id)" color="warning"><ion-icon name="create-outline"></ion-icon></ion-button>
+        <ion-button (click)="deleteUser(item.id)" color="danger"><ion-icon color="dark" name="trash-outline"></ion-icon></ion-button>
+      </ion-item>
+    </ion-list>
+</ion-content>
