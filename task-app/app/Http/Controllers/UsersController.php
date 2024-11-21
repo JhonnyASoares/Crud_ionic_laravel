@@ -70,3 +70,27 @@ class UsersController extends Controller
             'data' => $users
         ]);
     }
+
+    /**
+     * Recupera um usuário pelo seu ID.
+     *
+     * @param int $id O ID do usuário a ser recuperado.
+     * @return \Illuminate\Http\JsonResponse Uma resposta JSON contendo os dados do usuário, se for encontrada, ou uma mensagem de erro, se não for encontrada.
+     */
+    public function get($id): \Illuminate\Http\JsonResponse
+    {
+        // Buscando o usuário pelo id
+        $user = User::find($id);
+        // Verificando se o usuário foi encontrado
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'data' => 'Usuário n encontrado'
+            ]);
+        } else {
+            return response()->json([
+                'success' => true,
+                'data' => $user
+            ]);
+        }
+    }
