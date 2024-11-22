@@ -39,7 +39,7 @@ Certifique-se de que seu ambiente atenda aos seguintes requisitos:
 1. Clone o repositório:
 ```bash
 git clone https://github.com/JhonnyASoares/Crud_ionic_laravel
-cd back-end
+cd task-app
 ```
 2. Instale as dependências:
 ```bash
@@ -75,7 +75,7 @@ O backend estará disponível em: http://localhost:8000
 ### Frontend (Ionic)
 1. Navegue até a pasta do frontend:
 ```bash
-cd front-end
+cd task-front
 ```
 2. Instale as dependências:
 ```bash
@@ -101,8 +101,8 @@ O frontend estará disponível em: http://localhost:8100
 ---
 ## Estrutura de Pastas
 ```bash
-/back-end       # Código fonte do backend Laravel
-/front-end      # Código fonte do frontend Ionic
+/task-app       # Código fonte do backend Laravel
+/task-front      # Código fonte do frontend Ionic
 ```
 ---
 ## Licença 
