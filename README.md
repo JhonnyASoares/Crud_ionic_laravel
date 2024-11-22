@@ -8,7 +8,6 @@ Este projeto é um sistema simples de CRUD (Create, Read, Update, Delete) de pes
 - [Instalação e Configuração](#instalacao-e-configuracao)
   - [Backend (Laravel)](#backend-laravel)
   - [Frontend (Ionic)](#frontend-ionic)
-- [Importando Dados Iniciais do Banco de Dados](#importando-dados-iniciais-do-banco-de-dados)
 - [Uso](#uso)
 - [Estrutura de Pastas](#estrutura-de-pastas)
 - [Licença](#licenca)
@@ -94,25 +93,6 @@ export const environment = {
 ionic serve
 ```
 O frontend estará disponível em: http://localhost:8100
----
-## Importando Dados Iniciais do Banco de Dados
-
-Este projeto inclui um arquivo MySQL com dados de exemplo para facilitar o teste. Siga os passos abaixo para importar o arquivo:
-
-1. Certifique-se de que o banco de dados MySQL está em execução.
-2. Crie um banco de dados com o nome especificado no arquivo `.env` (task):
-   ```sql
-   CREATE DATABASE task;
-3. Acesse o diretório onde está localizado o arquivo .sql (task.sql).
-4. Use o comando abaixo para importar o arquivo SQL:
-```bash
-mysql -u root -p task < task.sql
-```
-5. Verifique se os dados foram importados corretamente, executando o seguinte comando:
-```sql
-SELECT * FROM users;
-```
-O arquivo SQL está na frente do projeto justo das pastas front-end e back-end `task.sql`.
 ---
 ## Uso
 1. Acesse a interface do frontend em http://localhost:8100.
